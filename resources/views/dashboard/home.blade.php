@@ -26,31 +26,32 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form method="post">
 
+                        @csrf
                         <div class="form-group">
                             <label for="inputName">Nombre del Cliente</label>
-                            <input type="text" class="form-control" id="inputName" placeholder="Diego Garcia..."
+                            <input type="text" name="nombre" class="form-control" id="inputName" placeholder="Diego Garcia..."
                                 required>
                         </div>
 
 
                         <div class="form-group">
                             <label for="inputAddress">Direccion</label>
-                            <input type="text" class="form-control" id="inputAddress"
+                            <input type="text" name="direccion" class="form-control" id="inputAddress"
                                 placeholder="Direccion del cliente...">
                         </div>
 
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="inputCity">Telefono</label>
-                                <input type="number" class="form-control" id="inputCity"
+                                <input type="number" name="tel" class="form-control" id="inputCity"
                                     placeholder="+57 000 000 00 00...">
                             </div>
 
                             <div class="form-group col-md-6">
                                 <label for="inputZip">Valor</label>
-                                <input type="number" class="form-control" id="inputZip" placeholder="Valor prestado">
+                                <input type="number" name="valor"  class="form-control" id="inputZip" placeholder="Valor prestado">
                             </div>
                         </div>
 
@@ -65,7 +66,7 @@
     </div>
 
 
-    <table  id="myTable" class="table table-striped" style="width:100%">
+    <table id="myTable" class="table table-striped" style="width:100%">
         <thead>
             <tr>
                 <th>Nombre</th>
@@ -76,12 +77,16 @@
         </thead>
 
         <tbody>
+            @foreach ( $clientes as $cliente )
             <tr>
-                <td>Nombre Del Cliente </td>
-                <td>Telefono</td>
-                <td>Total</td>
-                <td><a href=""><button class="btn btn-warning">Ver Tarjeta</button></a></td>
+                <td>{{ $cliente->cliente_nombre }}</td>
+                <td>{{ $cliente->cliente_tel }}</td>
+                <td>{{ $cliente->cliente_valor }}</td>
+                <td><a href="{{ route('cliente', ['cliente_id' => $cliente->cliente_id])}}"><button class="btn btn-warning">Ver Tarjeta</button></a></td>
             </tr>
+            @endforeach
+            
+
         </tbody>
 
     </table>
