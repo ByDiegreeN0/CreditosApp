@@ -54,6 +54,18 @@ class ClientesController extends Controller
         return view('dashboard.card', compact('cliente', 'pagos'));
     }
 
+    public function showClienteView($cliente_id){
+        $cliente = clientes::find($cliente_id);
+
+        if(!$cliente){
+            abort(404);
+        }
+
+        $pagos = $cliente->pagos;
+        
+        return view('dashboard.cliente_view', compact('cliente', 'pagos'));
+    }
+
     /**
      * Show the form for editing the specified resource.
      */

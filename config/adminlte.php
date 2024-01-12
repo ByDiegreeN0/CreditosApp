@@ -307,8 +307,6 @@ return [
             'route'  => 'dashboard',
             'icon' => 'fas fa-fw fa-user',
         ],
-       
-        
         
     ],
 

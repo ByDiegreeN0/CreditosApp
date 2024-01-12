@@ -22,3 +22,4 @@ Route::patch('/home', [App\Http\Controllers\ClientesController::class, 'update']
 
 Route::get('home/cliente/{cliente_id}', [App\Http\Controllers\ClientesController::class, 'show'])->middleware('auth')->name('cliente');
 Route::post('home/cliente/{cliente_id}', [App\Http\Controllers\PagosClienteController::class, 'store'])->middleware('auth');
+Route::get('/cliente/{cliente_id}', [App\Http\Controllers\ClientesController::class, 'showClienteView'])->name('view_cliente');
