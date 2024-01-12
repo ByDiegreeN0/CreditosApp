@@ -31,27 +31,27 @@
                         @csrf
                         <div class="form-group">
                             <label for="inputName">Nombre del Cliente</label>
-                            <input type="text" name="nombre" class="form-control" id="inputName" placeholder="Diego Garcia..."
+                            <input type="text" name="cliente_nombre" class="form-control" id="inputName" placeholder="Diego Garcia..."
                                 required>
                         </div>
 
 
                         <div class="form-group">
                             <label for="inputAddress">Direccion</label>
-                            <input type="text" name="direccion" class="form-control" id="inputAddress"
+                            <input type="text" name="cliente_direccion" class="form-control" id="inputAddress"
                                 placeholder="Direccion del cliente...">
                         </div>
 
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="inputCity">Telefono</label>
-                                <input type="number" name="tel" class="form-control" id="inputCity"
+                                <input type="number" name="cliente_tel" class="form-control" id="inputCity"
                                     placeholder="+57 000 000 00 00...">
                             </div>
 
                             <div class="form-group col-md-6">
                                 <label for="inputZip">Valor</label>
-                                <input type="number" name="valor"  class="form-control" id="inputZip" placeholder="Valor prestado">
+                                <input type="number" name="cliente_valor"  class="form-control" id="inputZip" placeholder="Valor prestado">
                             </div>
                         </div>
 

@@ -10,8 +10,10 @@ class clientes extends Model
 
     protected $primaryKey = 'cliente_id';
 
+    protected $fillable = ['cliente_nombre', 'cliente_direccion', 'cliente_tel', 'cliente_valor'];
+
     public function pagos(){
-        // tengo que hacer la relacion 1 a * con el modelo de "pagos"
+      return  $this->hasMany(pagoscliente::class, 'cliente_id', 'cliente_id');
         
     }
 

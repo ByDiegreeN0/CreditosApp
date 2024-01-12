@@ -30,13 +30,11 @@ class ClientesController extends Controller
      */
     public function store(Request $request)
     {
-        $ClientesPost = new clientes();
-        $data = $request->except('_token');
-        $ClientesPost->fill($data);
+       $cliente = $request->except('_token');
 
-        $ClientesPost->save();
+       Clientes::create($cliente);
 
-        return redirect()->route('/');
+       return redirect()->route('dashboard')->with('success', 'Cliente Agregado Correctamente');
     }
 
     /**
@@ -46,8 +44,14 @@ class ClientesController extends Controller
     {
         
         $cliente = clientes::find($cliente_id);
+
+        if(!$cliente){
+            abort(404);
+        }
+
+        $pagos = $cliente->pagos;
         
-        return view('dashboard.card', compact('cliente'));
+        return view('dashboard.card', compact('cliente', 'pagos'));
     }
 
     /**
