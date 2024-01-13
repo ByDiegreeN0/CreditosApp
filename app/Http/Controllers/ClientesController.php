@@ -12,22 +12,13 @@ class ClientesController extends Controller
      */
     public function index()
     {
-        $clientes = clientes::all();
+        $clientes = clientes::all()
+        ->where('cliente_estado', 'activo');
 
         return view('dashboard.home', compact('clientes'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
+  
     public function store(Request $request)
     {
        $cliente = $request->except('_token');
@@ -66,30 +57,43 @@ class ClientesController extends Controller
         return view('dashboard.cliente_view', compact('cliente', 'pagos'));
     }
 
+    public function showInactiveClients(){
+        $cancelados = clientes::all()
+        ->where('cliente_estado', 'cancelado');
+
+        return view('dashboard.cancelados', compact('cancelados'));
+    }
+
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(clientes $clientes)
+    public function edit()
     {
-        //
+        
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, clientes $clientes)
+    public function update(Request $request, $cliente_id)
     {
-        //
+
+        $request->validate([
+            'cancelado' => 'required|string',
+        ]);
+
+        $cliente = clientes::findOrFail($cliente_id);
+
+        $cliente->cliente_estado = $request->input('cancelado');
+
+        $cliente->save();
+
+        return redirect()->route('dashboard')->with('success', 'tarjeta del cliente cancelada correctamente');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+  
+    public function cancelClient($cliente_id){
+
+    }
     public function destroy($id)
     {
-        clientes::destroy($id);
-
-        // TENGO Q RETORNAR ALGO PERO DESPUES LO HAGO JAJA 
-
+      
     }
 }

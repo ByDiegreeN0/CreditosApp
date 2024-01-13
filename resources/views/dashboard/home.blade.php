@@ -39,19 +39,19 @@
                         <div class="form-group">
                             <label for="inputAddress">Direccion</label>
                             <input type="text" name="cliente_direccion" class="form-control" id="inputAddress"
-                                placeholder="Direccion del cliente...">
+                                placeholder="Direccion del cliente..." required>
                         </div>
 
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="inputCity">Telefono</label>
                                 <input type="number" name="cliente_tel" class="form-control" id="inputCity"
-                                    placeholder="+57 000 000 00 00...">
+                                    placeholder="+57 000 000 00 00..."  required>
                             </div>
 
                             <div class="form-group col-md-6">
                                 <label for="inputZip">Valor</label>
-                                <input type="number" name="cliente_valor"  class="form-control" id="inputZip" placeholder="Valor prestado">
+                                <input type="number" name="cliente_valor"  class="form-control" id="inputZip" placeholder="Valor prestado"  required>
                             </div>
                         </div>
 

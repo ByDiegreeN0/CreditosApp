@@ -307,6 +307,11 @@ return [
             'route'  => 'dashboard',
             'icon' => 'fas fa-fw fa-user',
         ],
+        [
+            'text' => 'Cancelados',
+            'route'  => 'cancelados', // cambiar ruta
+            'icon' => 'fas fa-fw fa-money-check',
+        ],
         
     ],
 
@@ -391,7 +396,7 @@ return [
             ],
         ],
         'Sweetalert2' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',

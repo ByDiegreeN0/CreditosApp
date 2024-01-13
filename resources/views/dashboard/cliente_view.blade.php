@@ -13,7 +13,7 @@
     <div class="client-card m-5">
 
         <div class="card">
-            <h5 class="card-header">Datos Del Cliente</h5>
+            <h5 class="card-header">Tarjeta Digital</h5>
             <div class="card-body">
                 <p class="card-text"><b>Nombre:</b> {{ $cliente->cliente_nombre }}</p>
                 <p class="card-text"><b>Direccion:</b> {{ $cliente->cliente_direccion }} </p>

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('cliente_direccion');
             $table->string('cliente_tel');
             $table->integer('cliente_valor');
+            $table->string('cliente_estado')->default('activo');
 
             $table->timestamps();
         });
