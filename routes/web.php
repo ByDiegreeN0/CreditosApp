@@ -23,7 +23,9 @@ Route::get('/cancelados', [App\Http\Controllers\ClientesController::class, 'show
 
 // Client Card Routes
 
-Route::get('home/cliente/{cliente_id}', [App\Http\Controllers\ClientesController::class, 'show'])->middleware('auth')->name('cliente');
-Route::post('home/cliente/{cliente_id}', [App\Http\Controllers\PagosClienteController::class, 'store'])->middleware('auth');
-Route::get('/cliente/{cliente_id}', [App\Http\Controllers\ClientesController::class, 'showClienteView'])->name('view_cliente');
-Route::patch('/cliente/cancelar/{cliente_id}', [App\Http\Controllers\ClientesController::class, 'update'])->middleware('auth');
+Route::get('home/cliente/{cliente_id}', [App\Http\Controllers\ClientesController::class, 'show'])->middleware('auth')->name('cliente'); // mostrar card cliente
+Route::post('home/cliente/{cliente_id}', [App\Http\Controllers\PagosClienteController::class, 'store'])->middleware('auth'); // registrar pago cliente
+Route::get('/cliente/{cliente_id}', [App\Http\Controllers\ClientesController::class, 'showClienteView'])->name('view_cliente'); // mostrar tarjeta digital
+Route::patch('/cliente/cancelar/{cliente_id}', [App\Http\Controllers\ClientesController::class, 'update'])->middleware('auth'); // cancelar tarjeta cliente
+Route::get('/cliente/edit/{cliente_id}', [App\Http\Controllers\ClientesController::class, 'edit'])->middleware('auth')->name('cliente_edit'); // mostrar view editar cliente
+Route::patch('/cliente/edit/{cliente_id}', [App\Http\Controllers\ClientesController::class, 'updateClient'])->name('update_cliente')->middleware('auth'); // actualizar datos del cliente

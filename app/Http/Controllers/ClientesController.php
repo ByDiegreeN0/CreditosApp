@@ -67,9 +67,33 @@ class ClientesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit()
+    public function edit($cliente_id)
     {
-        
+        $cliente = clientes::find($cliente_id);
+        return view('dashboard.cliente_edit', compact('cliente'));
+    }
+
+    
+
+    public function updateClient(Request $request, $cliente_id){
+        $request->validate([
+            'cliente_nombre' => 'required|string|max:255',
+            'cliente_direccion' => 'required|string|max:255',
+            'cliente_tel' => 'required|numeric',
+            'cliente_valor' => 'required|numeric',
+        ]);
+
+        $cliente = clientes::findOrFail($cliente_id);
+
+        $cliente->cliente_nombre = $request->input('cliente_nombre');
+        $cliente->cliente_direccion = $request->input('cliente_direccion');
+        $cliente->cliente_tel = $request->input('cliente_tel');
+        $cliente->cliente_valor = $request->input('cliente_valor');
+
+        $cliente->save();
+
+        return redirect()->route('cliente', ['cliente_id' => $cliente->cliente_id])->with('success', 'Tarjeta de datos del cliente actualizada correctamente');
+     
     }
 
     public function update(Request $request, $cliente_id)
