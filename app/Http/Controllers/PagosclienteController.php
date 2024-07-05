@@ -35,6 +35,7 @@ class PagosclienteController extends Controller
 
         $pago = new pagoscliente;
         $pago->pago_fecha = $request->input('pago_fecha');
+        $pago->pago_abono = $request->input('pago_cantidad');
         $pago->cliente_id = $cliente_id;
         $pago->save();
 

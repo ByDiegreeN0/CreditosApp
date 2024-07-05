@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\clientes;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class ClientesController extends Controller
 {
@@ -13,19 +15,19 @@ class ClientesController extends Controller
     public function index()
     {
         $clientes = clientes::all()
-        ->where('cliente_estado', 'activo');
+            ->where('cliente_estado', 'activo');
 
         return view('dashboard.home', compact('clientes'));
     }
 
-  
+
     public function store(Request $request)
     {
-       $cliente = $request->except('_token');
+        $cliente = $request->except('_token');
 
-       Clientes::create($cliente);
+        Clientes::create($cliente);
 
-       return redirect()->route('dashboard')->with('success', 'Cliente Agregado Correctamente');
+        return redirect()->route('dashboard')->with('success', 'Cliente Agregado Correctamente');
     }
 
     /**
@@ -33,33 +35,42 @@ class ClientesController extends Controller
      */
     public function show($cliente_id)
     {
-        
+
         $cliente = clientes::find($cliente_id);
 
-        if(!$cliente){
+        if (!$cliente) {
             abort(404);
         }
 
         $pagos = $cliente->pagos;
-        
+
         return view('dashboard.card', compact('cliente', 'pagos'));
     }
 
-    public function showClienteView($cliente_id){
+    public function showClienteView($cliente_id)
+    {
         $cliente = clientes::find($cliente_id);
 
-        if(!$cliente){
+        if (!$cliente) {
             abort(404);
         }
 
+        $total_abonos = DB::table('pagosclientes')
+            ->where('cliente_id', $cliente_id)
+            ->sum('pago_abono');
+
+        $balance = $cliente->cliente_valor - $total_abonos;
+
+
         $pagos = $cliente->pagos;
-        
-        return view('dashboard.cliente_view', compact('cliente', 'pagos'));
+
+        return view('dashboard.cliente_view', compact('cliente', 'pagos', 'balance'));
     }
 
-    public function showInactiveClients(){
+    public function showInactiveClients()
+    {
         $cancelados = clientes::all()
-        ->where('cliente_estado', 'cancelado');
+            ->where('cliente_estado', 'cancelado');
 
         return view('dashboard.cancelados', compact('cancelados'));
     }
@@ -73,9 +84,10 @@ class ClientesController extends Controller
         return view('dashboard.cliente_edit', compact('cliente'));
     }
 
-    
 
-    public function updateClient(Request $request, $cliente_id){
+
+    public function updateClient(Request $request, $cliente_id)
+    {
         $request->validate([
             'cliente_nombre' => 'required|string|max:255',
             'cliente_direccion' => 'required|string|max:255',
@@ -93,7 +105,6 @@ class ClientesController extends Controller
         $cliente->save();
 
         return redirect()->route('cliente', ['cliente_id' => $cliente->cliente_id])->with('success', 'Tarjeta de datos del cliente actualizada correctamente');
-     
     }
 
     public function update(Request $request, $cliente_id)
@@ -112,12 +123,11 @@ class ClientesController extends Controller
         return redirect()->route('dashboard')->with('success', 'tarjeta del cliente cancelada correctamente');
     }
 
-  
-    public function cancelClient($cliente_id){
 
+    public function cancelClient($cliente_id)
+    {
     }
     public function destroy($id)
     {
-      
     }
 }

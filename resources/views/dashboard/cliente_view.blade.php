@@ -19,6 +19,7 @@
                 <p class="card-text"><b>Direccion:</b> {{ $cliente->cliente_direccion }} </p>
                 <p class="card-text"><b>Telefono:</b> {{ $cliente->cliente_tel }}</p>
                 <p class="card-text"><b>Valor Prestado:</b> {{ $cliente->cliente_valor }}</p>
+                <p class="card-text"><b>Saldo Restante:</b></
             </div>
         </div>
     
@@ -28,6 +29,7 @@
                 <tr>
                     <th>#</th>
                     <th>Fecha</th>
+                    <th>Cantidad Abonada</th>
                 </tr>
             </thead>
     
@@ -40,8 +42,9 @@
                     <tr>
                         <td>{{ $contador }}</td>
                         <td>{{ $pago->pago_fecha }}</td>
+                        <td>{{ $pago->pago_abono }}</td>
                     </tr>
-    
+
                     @php
                         $contador++;
                     @endphp

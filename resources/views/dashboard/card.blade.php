@@ -27,9 +27,9 @@
                     </div>
                     <div class="modal-body">
                         <button type="button" class="btn btn-warning m-3" data-toggle="modal"
-                            data-target="#exampleModal">Registrar</button>
+                            data-target="#exampleModal">Registrar Abono</button>
 
-                      
+
 
                         <!-- Modal -->
                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
@@ -37,7 +37,7 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Registrar</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">Registrar Abono</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -47,8 +47,18 @@
                                     <div class="modal-body">
                                         <form action="{{ url('home/cliente/' . $cliente->cliente_id) }}" method="post">
                                             @csrf
-                                            <input class="form-control" type="date" name="pago_fecha" id=""
-                                                required>
+
+                                            <div class="form-group">
+                                                <label for="pago_fecha_input">Fecha de pago </label>
+                                                <input class="form-control" type="date" name="pago_fecha" id="pago_fecha_input" required>
+
+                                                <label for="pago_cantidad_input">Cantidad Abonada</label>
+                                                <input class="form-control" type="number" name="pago_cantidad" id="pago_cantidad_input" required placeholder="Ingrese la cantidad abonada">
+
+                                            </div>
+
+
+
                                             <input type="submit" class="btn btn-primary mt-3" value="Registrar Pago">
                                         </form>
                                     </div>
@@ -60,8 +70,8 @@
                                 style="color: #fff" data-url="{{ url('cliente/' . $cliente->cliente_id) }}"><i
                                     class="fas fa-fw fa-share-nodes"></i>Compartir Tarjeta</a></button>
 
-                                    <button class="btn btn-danger m-3"><a href="{{ url('/cliente/edit/' . $cliente->cliente_id) }}"
-                                        class="text-white">Editar Tarjeta</a></button>
+                        <button class="btn btn-danger m-3"><a href="{{ url('/cliente/edit/' . $cliente->cliente_id) }}"
+                                class="text-white">Editar Tarjeta</a></button>
 
                     </div>
                 </div>
@@ -91,6 +101,7 @@
                 <p class="card-text"><b>Direccion:</b> {{ $cliente->cliente_direccion }} </p>
                 <p class="card-text"><b>Telefono:</b> {{ $cliente->cliente_tel }}</p>
                 <p class="card-text"><b>Valor Prestado:</b> {{ $cliente->cliente_valor }}</p>
+                <p class="card-text"><b>Saldo Restante:</b></p>
             </div>
         </div>
 
@@ -108,6 +119,7 @@
                 <tr>
                     <th>#</th>
                     <th>Fecha</th>
+                    <th>Cantidad Abonada</th>
                 </tr>
             </thead>
 
@@ -120,6 +132,7 @@
                     <tr>
                         <td>{{ $contador }}</td>
                         <td>{{ $pago->pago_fecha }}</td>
+                        <td>{{ $pago->pago_abono }}</td>
                     </tr>
 
                     @php

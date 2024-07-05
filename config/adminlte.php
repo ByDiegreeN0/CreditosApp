@@ -300,8 +300,17 @@ return [
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
+
        
-        ['header' => 'Seccion de Clientes'],
+       
+        ['header' => 'Panel de Administracion'],
+
+        [
+            'text' => 'Gastos',
+            'route'  => 'dashboard',
+            'icon' => 'fas fa-fw fa-bank',
+        ],
+
         [
             'text' => 'Clientes',
             'route'  => 'dashboard',
@@ -309,7 +318,7 @@ return [
         ],
         [
             'text' => 'Cancelados',
-            'route'  => 'cancelados', // cambiar ruta
+            'route'  => 'cancelados',
             'icon' => 'fas fa-fw fa-money-check',
         ],
         
