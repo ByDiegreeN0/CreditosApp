@@ -29,3 +29,8 @@ Route::get('/cliente/{cliente_id}', [App\Http\Controllers\ClientesController::cl
 Route::patch('/cliente/cancelar/{cliente_id}', [App\Http\Controllers\ClientesController::class, 'update'])->middleware('auth'); // cancelar tarjeta cliente
 Route::get('/cliente/edit/{cliente_id}', [App\Http\Controllers\ClientesController::class, 'edit'])->middleware('auth')->name('cliente_edit'); // mostrar view editar cliente
 Route::patch('/cliente/edit/{cliente_id}', [App\Http\Controllers\ClientesController::class, 'updateClient'])->name('update_cliente')->middleware('auth'); // actualizar datos del cliente
+
+
+// GASTOS Routes
+
+Route::get('home/gastos', [App\Http\Controllers\GastosController::class, 'index'])->middleware('auth')->name('gastos'); // mostrar card cliente

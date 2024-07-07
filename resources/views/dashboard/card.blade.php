@@ -3,17 +3,13 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
+    <h1>Tarjeta personal del cliente</h1>
 @stop
 
 @section('content')
 
     <div class="d-flex flex-row-reverse">
 
-
-
-
-
-        <button type="button" class="btn btn-warning m-3" data-toggle="modal" data-target="#opcionesModal">Opciones</button>
         <!-- Modal -->
         <div class="modal fade" id="opcionesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
@@ -91,10 +87,17 @@
             <div class="card-header">
                 <div class="d-flex justify-content-between">
                     <h4>Datos Del Cliente</h4>
-                    <button class="btn btn-success"><a
-                            href="https://api.whatsapp.com/send?phone={{ $cliente->cliente_tel }}&text=Hola" target="_blank"
-                            style="color: #fff"><i class="fab fa-whatsapp"></i></a></button>
+                    <button type="button" class="btn btn-primary m-3" data-toggle="modal" data-target="#opcionesModal" style="color: #fff"><i class="fa-solid fa-plus"></i></button>
+
                 </div>
+            </div>
+
+            <div class="card-header">
+                <div class="d-flex justify-content-end">
+                    <button class="btn btn-success ml-2"><a href="https://api.whatsapp.com/send?phone={{ $cliente->cliente_tel }}&text=Hola" target="_blank" style="color: #fff"><i class="fab fa-whatsapp"></i> Enviar Mensaje</a></button>
+                    <button class="btn btn-dark ml-4"><a href="" style="color: #fff" target="_blank"><i class="fa-solid fa-phone"></i> Llamar</a></button>
+                </div>
+
             </div>
             <div class="card-body">
                 <p class="card-text"><b>Nombre:</b> {{ $cliente->cliente_nombre }}</p>

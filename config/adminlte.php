@@ -307,8 +307,8 @@ return [
 
         [
             'text' => 'Gastos',
-            'route'  => 'dashboard',
-            'icon' => 'fas fa-fw fa-bank',
+            'route'  => 'gastos',
+            'icon' => 'fas fa-fw fa-credit-card',
         ],
 
         [

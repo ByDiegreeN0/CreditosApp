@@ -12,7 +12,7 @@ class GastosController extends Controller
      */
     public function index()
     {
-        //
+        return view('dashboard.gastos');
     }
 
     /**
